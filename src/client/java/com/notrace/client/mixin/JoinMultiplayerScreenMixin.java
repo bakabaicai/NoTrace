@@ -1,6 +1,7 @@
 package com.notrace.client.mixin;
 
 import com.notrace.client.gui.MultiplayerCompatibilityScreen;
+import com.notrace.client.gui.ScreenNavigator;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen;
@@ -19,7 +20,7 @@ public abstract class JoinMultiplayerScreenMixin extends Screen {
     @Inject(method = "init", at = @At("TAIL"))
     private void notrace$addCompatibilitySettingsButton(CallbackInfo ci) {
         this.addRenderableWidget(Button.builder(Component.literal("NoTrace"), button ->
-                        this.minecraft.setScreen(new MultiplayerCompatibilityScreen(this)))
+                        ScreenNavigator.show(this.minecraft, new MultiplayerCompatibilityScreen(this)))
                 .bounds(5, 6, 100, 20)
                 .build());
     }

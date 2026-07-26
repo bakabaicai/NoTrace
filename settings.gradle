@@ -12,3 +12,6 @@ pluginManagement {
 // Should match your modid
 rootProject.name = 'NoTrace'
 
+include 'mc-1.21.11'
+include 'mc-26.x'
+

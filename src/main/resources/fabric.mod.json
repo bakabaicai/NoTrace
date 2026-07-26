@@ -3,7 +3,7 @@
 	"id": "notrace",
 	"version": "${version}",
 	"name": "NoTrace",
-	"description": "You Can't See Me.\n\nNoTrace makes your client look completely vanilla to servers.\nEvery mod list query returns a clean, unmodded response.\nNo logs. No alerts. No trace.\n\nThe server doesn't know you're there.\nIt just sees another boring vanilla client.\nExactly the way it should be.\n\n—— NoTrace",
+	"description": "You Can't See Me. No logs. No alerts. No trace.",
 	"authors": [
 		"baka_baicai",
 		"yajiyi"
@@ -31,8 +31,8 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.19.3",
-		"minecraft": "~1.21.11",
-		"java": ">=21",
+		"minecraft": "${minecraft_dependency}",
+		"java": "${java_dependency}",
 		"fabric-api": "*"
 		}
 }

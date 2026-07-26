@@ -1,0 +1,80 @@
+apply plugin: 'net.fabricmc.fabric-loom'
+apply plugin: 'maven-publish'
+
+version = project.mod_version
+group = project.maven_group
+base.archivesName = "NoTrace-26.x"
+
+repositories {
+	maven {
+		name = "Terraformers"
+		url = "https://maven.terraformersmc.com/"
+	}
+	maven {
+		name = "Modrinth"
+		url = "https://api.modrinth.com/maven"
+	}
+}
+
+loom {
+	splitEnvironmentSourceSets()
+
+	mods {
+		"notrace" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+}
+
+sourceSets {
+	main {
+		java.srcDirs = [rootProject.file("src/main/java")]
+		resources.srcDirs = [rootProject.file("src/main/resources")]
+	}
+	client {
+		java.srcDirs = [rootProject.file("src/client/java")]
+		resources.srcDirs = [rootProject.file("src/client/resources")]
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	compileOnly "maven.modrinth:modmenu:${project.modmenu_version}"
+}
+
+processResources {
+	inputs.properties(
+			version: project.version,
+			minecraft_dependency: project.minecraft_dependency,
+			java_dependency: project.java_dependency,
+			java_version: project.java_version
+	)
+
+	filesMatching(["fabric.mod.json", "notrace.client.mixins.json"]) {
+		expand(
+				version: project.version,
+				minecraft_dependency: project.minecraft_dependency,
+				java_dependency: project.java_dependency,
+				java_version: project.java_version
+		)
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+}
+
+java {
+	withSourcesJar()
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+	from(rootProject.file("LICENSE")) {
+		rename { "${it}_${project.base.archivesName.get()}" }
+	}
+}

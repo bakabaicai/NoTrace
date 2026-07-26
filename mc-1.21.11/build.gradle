@@ -1,0 +1,79 @@
+apply plugin: 'net.fabricmc.fabric-loom-remap'
+apply plugin: 'maven-publish'
+
+version = project.mod_version
+group = project.maven_group
+base.archivesName = "NoTrace-${project.minecraft_version}"
+
+repositories {
+	maven {
+		name = "Terraformers"
+		url = "https://maven.terraformersmc.com/"
+	}
+}
+
+loom {
+	splitEnvironmentSourceSets()
+
+	mods {
+		"notrace" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+}
+
+sourceSets {
+	main {
+		java.srcDirs = [rootProject.file("src/main/java")]
+		resources.srcDirs = [rootProject.file("src/main/resources")]
+	}
+	client {
+		java.srcDirs = [rootProject.file("src/client/java")]
+		resources.srcDirs = [rootProject.file("src/client/resources")]
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings loom.officialMojangMappings()
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	modCompileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
+}
+
+def targetJavaVersion = project.minecraft_version.startsWith("26.") ? 25 : 21
+
+processResources {
+	inputs.properties(
+			version: project.version,
+			minecraft_dependency: project.minecraft_dependency,
+			java_dependency: project.java_dependency,
+			java_version: project.java_version
+	)
+
+	filesMatching(["fabric.mod.json", "notrace.client.mixins.json"]) {
+		expand(
+				version: project.version,
+				minecraft_dependency: project.minecraft_dependency,
+				java_dependency: project.java_dependency,
+				java_version: project.java_version
+		)
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = targetJavaVersion
+}
+
+java {
+	withSourcesJar()
+	sourceCompatibility = JavaVersion.toVersion(targetJavaVersion)
+	targetCompatibility = JavaVersion.toVersion(targetJavaVersion)
+}
+
+jar {
+	from(rootProject.file("LICENSE")) {
+		rename { "${it}_${project.base.archivesName.get()}" }
+	}
+}

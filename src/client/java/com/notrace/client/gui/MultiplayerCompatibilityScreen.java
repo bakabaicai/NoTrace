@@ -23,7 +23,7 @@ public class MultiplayerCompatibilityScreen extends Screen {
 
         this.addRenderableWidget(Button.builder(modeLabel(), button -> {
             MultiplayerCompatibilityConfig.toggleAdvancedMode();
-            this.minecraft.setScreen(new MultiplayerCompatibilityScreen(previousScreen));
+            ScreenNavigator.show(this.minecraft, new MultiplayerCompatibilityScreen(previousScreen));
         }).bounds(buttonX, firstButtonY, buttonWidth, 20).build());
 
         if (MultiplayerCompatibilityConfig.advancedMode()) {
@@ -56,7 +56,7 @@ public class MultiplayerCompatibilityScreen extends Screen {
 
     @Override
     public void onClose() {
-        this.minecraft.setScreen(previousScreen);
+        ScreenNavigator.show(this.minecraft, previousScreen);
     }
 
     private static Component modeLabel() {
