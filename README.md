@@ -125,9 +125,9 @@ Join the [NoTrace QQ group](https://qm.qq.com/q/hSDIROgArC).
 - **baka_baicai & yajiyi** — Bypass design and core implementation
 - **ChatGPT 5.6 Sol** — Multi-version compatibility implementation
 - **Claude Opus 5** — Network communication layer implementation
-- **Doubao-2.0-Pro** — Analysis of SunWorld server custom payloads
+- **Doubao-2.0-Pro** — Analysis of SunWorld `ClientboundResourcePackPushPacket` packets
 - **Gemini Flash 3.6 Flash** — Early bypass concepts
-- **SunWorld** — Test platform and packet data
+- **SunWorld** — Test platform and `ClientboundResourcePackPushPacket` packets
 - **CNTier** — Test platform
 
 <p><i><span style="color: gray;">为什么SunWorld引以为傲的模组检测被Gemini Flash 3.6 Flash在17分钟内从0开始并完全破解，有心思在这里对抗这些无意义的小模组不如去升级你那大狗粪反作弊。</span></i></p>
