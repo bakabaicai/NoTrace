@@ -1,0 +1,38 @@
+﻿{
+	"schemaVersion": 1,
+	"id": "notrace",
+	"version": "${version}",
+	"name": "NoTrace",
+	"description": "You Can't See Me.\n\nNoTrace makes your client look completely vanilla to servers.\nEvery mod list query returns a clean, unmodded response.\nNo logs. No alerts. No trace.\n\nThe server doesn't know you're there.\nIt just sees another boring vanilla client.\nExactly the way it should be.\n\n—— NoTrace",
+	"authors": [
+		"baka_baicai",
+		"yajiyi"
+	],
+	"contact": {},
+	"license": "GPL-3.0-only",
+	"icon": "assets/notrace/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.notrace.NoTrace"
+		],
+		"client": [
+			"com.notrace.client.NoTraceClient"
+		],
+		"modmenu": [
+			"com.notrace.client.integration.NoTraceModMenuApi"
+		]
+	},
+	"mixins": [
+		{
+			"config": "notrace.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+		}
+}
