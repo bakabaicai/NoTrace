@@ -4,7 +4,7 @@
 
 ### You Can't See Me.
 
-![Minecraft](https://img.shields.io/badge/Minecraft-1.21.11%20%7C%2026.x-5B8731?style=flat-square)
+![Minecraft](https://img.shields.io/badge/Minecraft-1.21.11%20%7C%2026.1%20%7C%2026.2-5B8731?style=flat-square)
 ![Loader](https://img.shields.io/badge/Loader-Fabric-DACB3E?style=flat-square)
 ![License](https://img.shields.io/badge/License-GPLv3-7B68EE?style=flat-square)
 ![Version](https://img.shields.io/badge/Version-1.0-00BFFF?style=flat-square)
@@ -81,7 +81,7 @@ config/notrace/multiplayer-compatibility.json
 
 ## 📦 Requirements
 
-- Minecraft `1.21.11` or `26.x` (`26.1.2`–`26.2`)
+- Minecraft `1.21.11`, `26.1`, or `26.2`
 - Fabric Loader `>= 0.19.3`
 - Fabric API
 - Java `21` for Minecraft `1.21.11`
@@ -93,7 +93,7 @@ Mod Menu is optional. When installed, it provides an additional entry point to t
 
 ## 🧱 Multi-version development
 
-One Gradle project builds and launches both supported release lines from the same source tree:
+One Gradle project builds and launches all three supported versions from the same source tree:
 
 ```powershell
 # Build every target
@@ -102,10 +102,13 @@ One Gradle project builds and launches both supported release lines from the sam
 # Launch Minecraft 1.21.11
 .\gradlew.bat :mc-1.21.11:runClient
 
-# Launch the 26.x target (built against 26.2; metadata covers 26.1.2–26.2)
-.\gradlew.bat :mc-26.x:runClient
+# Launch Minecraft 26.1
+.\gradlew.bat :mc-26.1:runClient
 
-# Launch both targets together
+# Launch Minecraft 26.2
+.\gradlew.bat :mc-26.2:runClient
+
+# Launch all targets together
 .\gradlew.bat runAllClients --parallel
 ```
 

@@ -8,7 +8,8 @@ tasks.register("buildAll") {
 	description = "Build NoTrace for every supported Minecraft version."
 	dependsOn(
 			":mc-1.21.11:build",
-			":mc-26.x:build"
+			":mc-26.1:build",
+			":mc-26.2:build"
 	)
 }
 
@@ -17,6 +18,7 @@ tasks.register("runAllClients") {
 	description = "Launch every supported Minecraft client. Use --parallel to run them concurrently."
 	dependsOn(
 			":mc-1.21.11:runClient",
-			":mc-26.x:runClient"
+			":mc-26.1:runClient",
+			":mc-26.2:runClient"
 	)
 }

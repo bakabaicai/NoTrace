@@ -3,7 +3,7 @@ apply plugin: 'maven-publish'
 
 version = project.mod_version
 group = project.maven_group
-base.archivesName = "NoTrace-26.x"
+base.archivesName = "NoTrace-${project.minecraft_version}"
 
 repositories {
 	maven {
