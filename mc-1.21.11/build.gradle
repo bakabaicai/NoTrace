@@ -52,13 +52,21 @@ processResources {
 			java_version: project.java_version
 	)
 
-	filesMatching(["fabric.mod.json", "notrace.client.mixins.json"]) {
+	filesMatching("fabric.mod.json") {
 		expand(
 				version: project.version,
 				minecraft_dependency: project.minecraft_dependency,
 				java_dependency: project.java_dependency,
 				java_version: project.java_version
 		)
+	}
+}
+
+processClientResources {
+	inputs.property("java_version", project.java_version)
+
+	filesMatching("notrace.client.mixins.json") {
+		expand(java_version: project.java_version)
 	}
 }
 
